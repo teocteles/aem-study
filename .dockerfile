@@ -1,0 +1,2 @@
+FROM sonarqube:7.9-community AS aemrulesqube79
+RUN curl -Lk -o $SONARQUBE_HOME/extensions/plugins/aemrules-1.0-RC2.jar https://github.com/wttech/AEM-Rules-for-SonarQube/releases/download/v1.0-RC2/aemrules-1.0-RC2.jar

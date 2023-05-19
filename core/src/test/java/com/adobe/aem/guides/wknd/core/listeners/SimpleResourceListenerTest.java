@@ -18,12 +18,13 @@ package com.adobe.aem.guides.wknd.core.listeners;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import org.apache.sling.api.resource.observation.ResourceChange;
+import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.observation.ResourceChange.ChangeType;
 import org.junit.jupiter.api.Test;
+import org.osgi.service.event.Event;
 
 import uk.org.lidalia.slf4jext.Level;
 import uk.org.lidalia.slf4jtest.LoggingEvent;
@@ -39,9 +40,10 @@ class SimpleResourceListenerTest {
     @Test
     void handleEvent() {
         
-        ResourceChange change = new ResourceChange(ChangeType.ADDED,"/content/test", false);
-        
-        fixture.onChange(Arrays.asList(change));
+        Event resourceEvent = new Event("event/topic", Collections.singletonMap(SlingConstants.PROPERTY_PATH, "/content/test"));
+
+        fixture.handleEvent(resourceEvent);
+
 
         List<LoggingEvent> events = logger.getLoggingEvents();
         assertEquals(1, events.size());

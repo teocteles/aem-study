@@ -59,10 +59,59 @@
         <componentGroupName>WKND Sites Project</componentGroupName>
         <core.wcm.components.version>2.18.0</core.wcm.components.version>
         <uber.jar.version>6.5.10</uber.jar.version>
+
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.exclusions>it.tests/**/*, ui.tests/**/*, ui.config/**/*, ui.apps.structure/**/*, dispatcher/**/*</sonar.exclusions>
+        <sonar.coverage.jacoco.xmlReportPaths>core/target/site/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+
     </properties>
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.6.0.1398</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sonar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.10</version>
+                <configuration>
+                    <useFile>false</useFile>
+                </configuration>
+            </plugin>
+
             <!-- Maven Release Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -405,6 +454,7 @@ Bundle-DocURL:
     </build>
 
     <profiles>
+
         <!-- ====================================================== -->
         <!-- A D O B E P U B L I C P R O F I L E -->
         <!-- ====================================================== -->

@@ -12,20 +12,18 @@
         <items jcr:primaryType="nt:unstructured">
             <tabs jcr:primaryType="nt:unstructured">
                 <items jcr:primaryType="nt:unstructured">
-
                     <title
                         jcr:primaryType="nt:unstructured"
                         jcr:title="meu teste"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="Title"
                         name="./title"/>
-
                     <properties
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Properties"
+                        sling:hideResource="true"
                         sling:orderBefore="cq:styles"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
-                        sling:hideResource="true"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
                             <columns
@@ -107,9 +105,9 @@
                     <accessibility
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Accessibility"
+                        sling:hideResource="true"
                         sling:orderBefore="cq:styles"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
-                        sling:hideResource="true"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
                             <columns
@@ -176,7 +174,6 @@
                                     </column>
                                 </items>
                             </columns>
-
                         </items>
                     </accessibility>
                 </items>
